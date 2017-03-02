@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "main": "cross-env.cmd DEBUG=lexer node main.js"
+    "main": "cross-env.cmd DEBUG=lexer,LLParser node main.js"
   },
   "author": "",
   "license": "ISC",
