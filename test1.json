@@ -1,0 +1,20 @@
+{
+	"left": {
+		"token": {
+			"type": "number",
+			"val": 1
+		}
+	},
+	"op": {
+		"token": {
+			"type": "identifier",
+			"val": "+"
+		}
+	},
+	"right": {
+		"token": {
+			"type": "number",
+			"val": 2
+		}
+	}
+}

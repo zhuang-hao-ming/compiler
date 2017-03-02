@@ -3,7 +3,7 @@
 
 const Lexer = require('./lexer')
 const LLParser = require('./llParser')
-
+const Parser = require('./parser')
 
 
 let code5 = `
@@ -14,7 +14,7 @@ let code5 = `
     690 + 47 * 52 - 398
 `
 
-
+let code6 = `1+2`
 
 
 
@@ -28,9 +28,22 @@ function main() {
     
     while (p.lexer.queue.length > 0) {
         let r = p.expression()
+		console.log(r)
         console.log(r.eval())
     }
     
 }
 
-main()
+function main1() {
+	let l = new Lexer()
+    l.readLine(code6)
+	let p = new Parser("BinaryExprNode")
+	p.number().token('+').number()
+	
+	let r = p.parse(l)
+	console.log(JSON.stringify(r))
+	console.log(r.eval())
+
+}
+main1()
+// main()
