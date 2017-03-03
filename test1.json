@@ -1,20 +1,66 @@
 {
-	"left": {
-		"token": {
-			"type": "number",
-			"val": 1
+	"children": [
+		{
+			"children": [
+				{
+					"children": [
+						{
+							"children": [
+								{
+									"nodes": [
+										{
+											"children": [
+												{
+													"children": [
+														{
+															"children": [
+																{
+																	"children": [
+																		{
+																			"token": {
+																				"type": "number",
+																				"val": 1
+																			}
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											"token": {
+												"type": "identifier",
+												"val": "+"
+											}
+										},
+										{
+											"children": [
+												{
+													"children": [
+														{
+															"children": [
+																{
+																	"token": {
+																		"type": "number",
+																		"val": 2
+																	}
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
 		}
-	},
-	"op": {
-		"token": {
-			"type": "identifier",
-			"val": "+"
-		}
-	},
-	"right": {
-		"token": {
-			"type": "number",
-			"val": 2
-		}
-	}
+	]
 }

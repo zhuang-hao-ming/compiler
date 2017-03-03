@@ -2,7 +2,7 @@
 const debug = require('debug')('BinaryExprNode')
 
 class BinaryExprNode {
-    constructor (...nodes) {
+    constructor (nodes) {
         this.nodes = nodes
     }
     eval() {
