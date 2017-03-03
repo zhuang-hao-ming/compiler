@@ -71,7 +71,12 @@ class Parser {
 		if (this.className) {
 			return eval(`new ${this.className}(results)`)
 		} else {
-			return new ListNode(results)
+			if (results.length === 1) {
+				return results[0] // 如果子树只有一个节点,且没有显式的指定根节点的类型时,直接将他作为子树
+			} else {
+				return new ListNode(results)
+			}
+			
 		}
 	}
 	number() {
