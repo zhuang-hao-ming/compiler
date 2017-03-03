@@ -5,11 +5,20 @@ class BinaryExprNode {
     constructor (nodes) {
         this.nodes = nodes
     }
-    eval() {
-        let l = this.nodes[0].eval()
-        let op = this.nodes[1].eval()
-        let r = this.nodes[2].eval()
-        return eval('' + l + op + r)
+    eval(env) {
+
+        let l = this.nodes[0]
+        let opV = this.nodes[1].eval(env)
+        let rV = this.nodes[2].eval(env)
+
+        if (opV === '=') {
+            let name = l.children[0].token.val
+            env[name] = rV
+            return rV
+        } else {
+            return eval('' + l.eval(env) + opV + rV)
+        }
+        
     }
 }
 

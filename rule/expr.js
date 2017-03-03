@@ -21,7 +21,7 @@ class Expr {
 		res.push(right)
 	}
 	match(lexer) {
-		return this.parser.match
+		return this.parser.match(lexer)
 	}
 	nextOperator(lexer) {
 		let t = lexer.peek()

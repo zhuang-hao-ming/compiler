@@ -5,7 +5,7 @@ class LeafNode {
     constructor(token) {
         this.token = token
     }
-    eval() {
+    eval(env) {
         return this.token.val
     }
 }

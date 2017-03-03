@@ -20,6 +20,7 @@ const {
 	BlockStatement,
 	IfStatement,
 	WhileStatement,
+	NullStatement,
 
 	BinaryExprNode,
 	NegativeExprNode,

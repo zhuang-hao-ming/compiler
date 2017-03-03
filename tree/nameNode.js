@@ -5,8 +5,13 @@ class NameNode {
     constructor (token) {
         this.token = token
     } 
-    eval() {
-        return this.token.val
+    eval(env) {
+        
+        if (this.token.val in env) {
+            return env[this.token.val]
+        } else {
+            throw new Error('NameNode eval error env: ', env)
+        }
     }
 }
 

@@ -5,8 +5,8 @@ class PrimaryExprNode {
     constructor (nodes) {
         this.children = nodes
     }
-    eval() {
-        
+    eval(env) {
+        return this.children[0].eval(env)
     }
 }
 

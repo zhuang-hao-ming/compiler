@@ -8,6 +8,7 @@ module.exports = {
 	BlockStatement: require('./blockStatement'),
 	IfStatement: require('./ifStatement'),
 	WhileStatement: require('./whileStatement'),
+	NullStatement: require('./nullStatement'),
 
 	BinaryExprNode: require('./binaryExprNode'),
 	NegativeExprNode: require('./negativeExprNode'),

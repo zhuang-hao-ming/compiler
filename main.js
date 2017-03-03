@@ -7,18 +7,32 @@ const Parser = require('./parser')
 const rule = Parser.rule
 
 let code5 = `
-    (5+1) * (6+2) / (1+3)
-    (5+1) * (6+2) / (1+3)
-    9405 - 2940 / 28 * 21
-    920 - 1680 / 40 / 7 
-    690 + 47 * 52 - 398
+    (5+1) * (6+2) / (1+3);
+    (5+1) * (6+2) / (1+3);
+    9405 - 2940 / 28 * 21;
+    920 - 1680 / 40 / 7 ;
+    690 + 47 * 52 - 398;
 `
 
-let code6 = `-1 + 2;`
+let code6 = `
+a = 2;
+b = "string";
+if a % 2 == 0 {
+	b = "even";
+} else {
+	b = "odd";
+}
+a;
+b;
+`
+
+
 
 const reserved = {
 	';': 1,
-	'}': 1	
+	'}': 1,
+	'\n': 1,
+	'{': 1	
 }
 const operators = {
 	'=': {val:1, left: false},
@@ -31,6 +45,9 @@ const operators = {
 	'/': {val:4, left: true},
 	'%': {val:4, left: true},		
 }
+
+const ENVIRONMENT = {}
+
 
 function main() {
     let l = new Lexer()
@@ -66,7 +83,7 @@ function main1() {
 
 	let simple = rule('PrimaryExprNode').ast(expr)
 	let statement = rule()
-	let block = rule('BlockStatementNode')
+	let block = rule('BlockStatement')
 				.sep('{')
 				.option(statement)
 				.repeat(rule().sep(';','\n').option(statement))
@@ -78,16 +95,24 @@ function main1() {
 		rule('WhileStatement').sep('while').ast(expr).ast(block),
 		simple
 	)
-	let program = rule().option(statement).sep(';','\n')
+	let program = rule().or(
+		statement,
+		rule('NullStatement')
+		).sep(';','\n')
 
 	let l = new Lexer()
     l.readLine(code6)
-	let r = program.parse(l)
+	while (l.queue.length > 0) {
+		let r = program.parse(l)
+		let result = r.eval(ENVIRONMENT)
+		console.log(result)
+	}
+	
 
 
-	console.log(JSON.stringify(r))
-	console.log(r)
-	console.log(r.eval())
+	// console.log(JSON.stringify(r))
+	// console.log(r)
+	
 
 }
 main1()
