@@ -1,3 +1,6 @@
 node_modules/
 .vscode/
 npm-debug.log
+test.js
+test.json
+test1.json

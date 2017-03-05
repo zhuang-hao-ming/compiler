@@ -5,8 +5,8 @@ class ListNode {
     constructor (nodes) {
         this.children = nodes
     }
-    eval() {
-        
+    eval(env) {
+		return 'list node'
     }
 }
 

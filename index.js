@@ -1,39 +1,29 @@
-
 'use strict'
 
 const Lexer = require('./lexer')
 const LLParser = require('./llParser')
 const Parser = require('./parser')
 const rule = Parser.rule
-
-let code5 = `
-    (5+1) * (6+2) / (1+3);
-    (5+1) * (6+2) / (1+3);
-    9405 - 2940 / 28 * 21;
-    920 - 1680 / 40 / 7 ;
-    690 + 47 * 52 - 398;
-`
-
-let code6 = `
-a = 2;
-b = "string";
-if a % 2 == 0 {
-	b = "even";
-} else {
-	b = "odd";
-}
-a;
-b;
-`
+const debug = require('debug')('compiler')
 
 
 
+/**
+ * 保留字set
+ * @const
+ * @type {Object}
+ */
 const reserved = {
 	';': 1,
 	'}': 1,
 	'\n': 1,
 	'{': 1	
 }
+/**
+ * 操作符优先级表map
+ * @const
+ * @type {Object}
+ */
 const operators = {
 	'=': {val:1, left: false},
 	'==': {val:2, left: true},
@@ -45,28 +35,22 @@ const operators = {
 	'/': {val:4, left: true},
 	'%': {val:4, left: true},		
 }
-
+/**
+ * 环境对象,保存变量
+ * @const
+ * @type {Object}
+ */
 const ENVIRONMENT = {}
 
 
-function main() {
-    let l = new Lexer()
-    l.readLine(code5)
-    
-    let p = new LLParser(l)
-    
-    
-    while (p.lexer.queue.length > 0) {
-        let r = p.expression()
-		console.log(r)
-        console.log(r.eval())
-    }
-    
-}
 
-function main1() {
+
+
+
+module.exports = function(code) {
 	
-
+	// 语法解析器 定义
+	
 	let expr = rule()
 	let primary = rule('PrimaryExprNode').or(
 		rule().sep('(').ast(expr).sep(')'),
@@ -99,21 +83,32 @@ function main1() {
 		statement,
 		rule('NullStatement')
 		).sep(';','\n')
-
+		
+	
+	// 词法解析器 定义	 
 	let l = new Lexer()
-    l.readLine(code6)
-	while (l.queue.length > 0) {
+
+	
+	// 词法解析	 
+    l.readLine(code)
+
+	let result = undefined
+	while (l.length() > 0) {
+		
+		// 语法解析
+		 
 		let r = program.parse(l)
-		let result = r.eval(ENVIRONMENT)
-		console.log(result)
+		
+		// 解释执行
+		 
+		result = r.eval(ENVIRONMENT)
+		
+		// 中间结果debug
+		
+		debug(result)
 	}
 	
-
-
-	// console.log(JSON.stringify(r))
-	// console.log(r)
+	// 最终结果返回
 	
-
+	return result
 }
-main1()
-// main()

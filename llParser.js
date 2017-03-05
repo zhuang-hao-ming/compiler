@@ -1,3 +1,6 @@
+/**
+ * ll 语法解析器的简单实现
+ */
 'use strict'
 
 const debug = require('debug')('LLParser')
@@ -59,7 +62,7 @@ class LLParser {
         while (this.isTooken('*') || this.isTooken('/')) {
             let op = this.lexer.read()
             let right = this.factor()
-            left = new BinaryExprNode(left, new OperatorNode(op), right)
+            left = new BinaryExprNode([left, new OperatorNode(op), right])
         }
         return left
     }
@@ -71,7 +74,7 @@ class LLParser {
         while (this.isTooken('+') || this.isTooken('-')) {
             let op = this.lexer.read()
             let right = this.term()
-            left = new BinaryExprNode(left, new OperatorNode(op), right)
+            left = new BinaryExprNode([left, new OperatorNode(op), right])
         }
         return left
     }
