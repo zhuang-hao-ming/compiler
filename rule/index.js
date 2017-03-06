@@ -1,11 +1,11 @@
 module.exports = {
-	IdentifierToken: require('./identifierToken'),
-	NumToken: require('./numToken'),
+	IdentifierToken: require('./token/identifierToken'),
+	NumToken: require('./token/numToken'),
 	OrTree: require('./orTree'),
-	SkipToken: require('./skipToken'),
-	StringToken: require('./stringToken'),
+	SkipToken: require('./token/skipToken'),
+	StringToken: require('./token/stringToken'),
 	Tree: require('./tree'),
-	VariableToken: require('./variableToken'),
+	VariableToken: require('./token/variableToken'),
 	Expr: require('./expr'),
 	Repeat: require('./repeat')	
 }

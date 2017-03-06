@@ -1,19 +1,20 @@
-const NameNode = require('../tree/nameNode')
+const NameNode = require('../../tree').NameNode
 
 /**
- * 变量语法规则
+ * 匹配作为变量的标识符
+ * @class
  * 
  */
 class VariableToken {
 	/**
-	 * r {{Object}} 保留字
+	 * @param {Object={}} r 保留字set
 	 */
 	constructor(r = {}) {
 		this.reserved = r
 	}
 	parse(lexer, res) {
 		let t = lexer.read()
-		if (t.type === 'identifier' && !this.reserved[t.val]) {
+		if (this.test(t)) {
 			res.push(new NameNode(t))
 		} else {
 			throw new Error('VariableToken')
@@ -21,6 +22,9 @@ class VariableToken {
 	}
 	match(lexer) {
 		let t = lexer.peek()
+		return this.test(t)
+	}
+	test(t) {
 		if (t.type === 'identifier' && !this.reserved[t.val]) {
 			return true
 		} else {

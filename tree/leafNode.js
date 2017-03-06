@@ -1,5 +1,5 @@
 'use strict'
-const debug = require('debug')('OperatorNode')
+const debug = require('debug')('LeafNode')
 
 class LeafNode {
     constructor(token) {

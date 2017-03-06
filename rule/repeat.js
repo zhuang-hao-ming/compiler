@@ -1,5 +1,8 @@
 const debug = require('debug')('repeat')
-
+/**
+ * 重复0次或多次的语法规则
+ * @class
+ */
 class Repeat {
 	constructor(parser, once) {
 		this.parser = parser

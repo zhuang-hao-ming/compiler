@@ -1,5 +1,6 @@
 /**
  * 或规则
+ * @class
  */
 class OrTree {
 	constructor(parsers) {

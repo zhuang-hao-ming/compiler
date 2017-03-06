@@ -1,5 +1,6 @@
 /**
  * 子语法树规则类
+ * @class
  */
 class Tree {
 
